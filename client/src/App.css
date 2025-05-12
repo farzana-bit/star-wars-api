@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* ============================
+   BASE STYLES
+============================= */
+body {
+  margin: 0;
+  background: #000;
+  font-family: 'Orbitron', sans-serif;
+  overflow-x: hidden;
+}
+
+.app {
+  position: relative;
+  padding: 2rem;
+  min-height: 100vh;
+  color: #00ffff;
+  background: radial-gradient(ellipse at bottom, #0d0d2b 0%, #000000 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Overlay gradient */
+.app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,30,0.9), rgba(20,0,50,0.8));
+  z-index: -2;
+}
+
+/* Stars layer */
+.app::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(1px 1px at 10% 20%, #ffffff88 60%, transparent),
+    radial-gradient(1px 1px at 30% 40%, #ffffff55 60%, transparent),
+    radial-gradient(1px 1px at 70% 80%, #ffffff33 60%, transparent),
+    radial-gradient(1px 1px at 50% 60%, #ffffff66 60%, transparent),
+    radial-gradient(1px 1px at 90% 10%, #ffffff44 60%, transparent);
+  background-size: 1000px 1000px;
+  animation: twinkle 6s ease-in-out infinite, drift 120s linear infinite;
+  z-index: -1;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Galaxy background stars */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 200%; height: 200%;
+  background: 
+    radial-gradient(3px 3px at 15% 25%, #ffffffcc 70%, transparent),
+    radial-gradient(3px 3px at 40% 70%, #ffffff99 70%, transparent),
+    radial-gradient(2.5px 2.5px at 60% 50%, #ffffff88 70%, transparent),
+    radial-gradient(2px 2px at 80% 20%, #ffffff66 70%, transparent),
+    radial-gradient(3px 3px at 90% 80%, #ffffffaa 70%, transparent),
+    radial-gradient(2.5px 2.5px at 10% 90%, #ffffff77 70%, transparent);
+  background-size: 800px 800px;
+  animation: galaxyDrift 240s linear infinite, starTwinkle 8s ease-in-out infinite;
+  z-index: -3;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* ============================
+   KEYFRAMES
+============================= */
+@keyframes galaxyDrift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-50%, -50%); }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes drift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-30%, -30%); }
+}
+
+/* ============================
+   TYPOGRAPHY
+============================= */
+h1, h2, h3 {
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffffcc;
+  font-size: 1rem;
+  text-align: center;
+}
+
+@keyframes flickerIn {
+  0% { opacity: 0; text-shadow: none; }
+  10% { opacity: 0.3; }
+  20% { opacity: 1; }
+  30% { opacity: 0.2; }
+  40% { opacity: 1; }
+  100% { opacity: 1; text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; }
+}
+
+h1 {
+  animation: flickerIn 2.5s ease-in forwards;
+}
+
+
+/* ============================
+   SEARCH BAR
+============================= */
+.search-bar {
+  margin: 0 auto 2rem auto;
+  display: inline-flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0,255,255,0.3);
+  justify-content: center;
+  align-items: center;
+}
+
+/* ============================
+   INPUT FIELD
+============================= */
+input {
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(0,255,255,0.4);
+  border-radius: 6px;
+  background-color: rgba(255,255,255,0.05);
+  color: #00ffff;
+  outline: none;
+  transition: 0.3s ease;
+  box-shadow: 0 0 6px rgba(0,255,255,0.2);
+}
+
+input::placeholder {
+  color: #00ffff99;
+}
+
+input:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 10px rgba(0,255,255,0.6);
+}
+
+/* ============================
+   BUTTON
+============================= */
+button {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(0,255,255,0.4);
+  border-radius: 6px;
+  background: linear-gradient(145deg, #003344, #001c2a);
+  color: #00ffff;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px rgba(0,255,255,0.4);
+}
+
+button:hover {
+  background: linear-gradient(145deg, #004455, #002d3d);
+  box-shadow: 0 0 12px rgba(0,255,255,0.7);
+}
+
+/* ============================
+   GRID LAYOUT
+============================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sciFiCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sciFiLeft,
+  .sciFiRight {
+    width: 100%;
+  }
+
+  .sciFiRight {
+    align-items: center;
+  }
+}
+
+/* ============================
+   CARD STYLES
+============================= */
+.card, .sciFiCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-image: linear-gradient(to right, #00ffff, #004466, #00ffff) 1;
+  border-radius: 20px;
+  padding: 1.2rem;
+  box-shadow: 0 0 25px rgba(0,255,255,0.2);
+  backdrop-filter: blur(50px) saturate(180%);
+  color: #00ffff;
+  transition: all 0.4s ease;
+  width: 100%;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0.75;
+}
+
+.card:hover, .sciFiCard:hover {
+  transform: rotateY(4deg) scale(1.05);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 35px rgba(0,255,255,0.5);
+  opacity: 1;
+  border-color: rgba(0, 255, 255, 0.7);
+}
+
+/* Card content */
+.card-left i {
+  font-size: 3.5rem;
+}
+
+.card-left h2,
+.characterName {
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+.card-right, .sciFiCard, .sciFiRight {
+  font-size: 0.75rem;
+}
+
+/* ============================
+   LINK STYLING
+============================= */
+.sciFiRight a {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  color: #00ffff;
+  font-weight: bold;
+  font-size: 0.75rem;
+  text-decoration: none;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 6px rgba(0,255,255,0.3);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sciFiRight a:hover {
+  background: rgba(0, 255, 255, 0.1);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(0,255,255,0.7), 0 0 24px rgba(0,255,255,0.4);
+  border-color: rgba(0, 255, 255, 0.6);
+}
+
+/* ============================
+   POWER LEVEL LABEL
+============================= */
+.power-level label {
+  font-size: 0.65rem;
+}
+
+/* ============================
+   PAGINATION
+============================= */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2.5rem;
+}
+
+/* ============================
+   STICKY NAVIGATION
+============================= */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,255,255,0.3);
+  padding: 1rem;
+  z-index: 1000;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,255,255,0.1);
+  font-size: 1rem;
+  font-weight: bold;
+  color: #00ffff;
+  text-transform: uppercase;
+}
